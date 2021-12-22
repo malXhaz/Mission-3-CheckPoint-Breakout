@@ -10,7 +10,16 @@ public class Paddle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        float paddleSize = DifficultyManager.Instance.paddleSize;
+        transform.localScale = new Vector3(paddleSize, transform.localScale.y, transform.localScale.z);
+        Ball ball = FindObjectOfType<Ball>();
+        if (paddleSize >= 0.39 && paddleSize <= 0.41) {
+            ball.gameObject.transform.localScale = new Vector3( 0.1875f*2 , ball.gameObject.transform.localScale.y, ball.gameObject.transform.localScale.z);
+        } else if (paddleSize >= 0.79 && paddleSize <= 0.81) {
+            ball.gameObject.transform.localScale = new Vector3( 0.1875f , ball.gameObject.transform.localScale.y, ball.gameObject.transform.localScale.z);
+        } else {
+            ball.gameObject.transform.localScale = new Vector3( 0.1875f /2 , ball.gameObject.transform.localScale.y, ball.gameObject.transform.localScale.z);
+        }
     }
 
     // Update is called once per frame
